@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<membase>
+	<buckets>
+		<bucket name="apple">
+			<nodes>
+				<node host="10.18.138.190" port="11213" weight="1"/>
+			</nodes>
+		</bucket>
+		<bucket name="default">
+			<nodes>
+				<node host="10.18.138.190" port="11211" weight="1"/>
+			</nodes>
+		</bucket>
+	</buckets>
+	<pool init_conn="5" min_conn="5" max_conn="32" idle_time="25600000" maint_sleep="30"/>
+	<socket timeout="3000" conn_timeout="0"/>
+	<client compress="0" compress_thresold="65536"/>
+</membase>

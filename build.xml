@@ -1,0 +1,57 @@
+<project name="MembastTestJava" default="dist" basedir=".">
+    <description>
+        Membase Java Test Project By Frank
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" value="src"/>
+  <property name="build" value="build"/>
+  <property name="dist" value="dist"/>
+  <property name="conf" value="conf"/>
+  <property name="lib"  value="lib" />
+
+  <path id="buildlibs">
+       <pathelement location="${conf}" />
+        <fileset dir="${lib}">
+          <include name="**/*.jar" />
+        </fileset>
+   </path>
+
+  <target name="init" depends="clean">
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <copy todir="${build}">
+      <fileset dir="${src}">
+        <exclude name="**/*.java" />
+        <exclude name="**/*.html" />
+        <exclude name="**/log4j.properties" />
+      </fileset>
+    </copy>
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}">
+        <classpath refid="buildlibs" />
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile"
+        description="generate the distribution jar" >
+
+    <!-- Put everything in ${build} into the DataProxy-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/MembaseTestJava.jar" basedir="${build}"/>
+       <fileset dir="${build}">
+        <include name="**/*.*" />
+       </fileset>
+  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete file="${dist}/MembaseTestJava.jar"/>
+  </target>
+
+</project>
+
