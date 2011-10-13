@@ -8,6 +8,9 @@ public class JobFactory {
 		if(jobName.equalsIgnoreCase("traversal_set")){
 			return new TraversalSetJob(clientWrapper, generator, jobRangeBegin, jobRangeEnd);
 		}
+		if(jobName.equalsIgnoreCase("traversal_get")){
+			return new TraversalGetJob(clientWrapper, generator, jobRangeBegin, jobRangeEnd);
+		}
 		throw new IllegalArgumentException("job "+jobName+" not exist!");
 	}
 }
