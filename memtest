@@ -1,5 +1,5 @@
 #!/bin/sh
-base_dir=`dirname $0`/
+base_dir=`dirname $0`
 
 main=com.xingcloud.dataproxy.membase.test.MembaseTest
 
